@@ -1,0 +1,71 @@
+Q1. Which function is used to open a file? What are the different modes of opening a file? Explain each mode
+of file opening.
+#the key function for working with files in Python is the open() function.
+ The open() function takes two parameters; filename, and mode.
+
+There are four different methods (modes) for opening a file:
+
+"r" - Read - Default value. Opens a file for reading, error if the file does not exist
+
+"a" - Append - Opens a file for appending, creates the file if it does not exist
+
+"w" - Write - Opens a file for writing, creates the file if it does not exist
+
+"x" - Create - Creates the specified file, returns an error if the file exists
+
+example--File_object = open(r"File_Name", "Access_Mode")
+
+Q2. Why close() function is used? Why is it important to close a file?
+#It’s important to close files in Python. Because files are limited resources managed by the operating system, making sure files are closed after use will protect against hard-to-debug issues like running out of file handles or experiencing corrupted data. The best defense is always to open files with a context manager.
+
+Q3. Write a python program to create a text file. Write ‘I want to become a Data Scientist’ in that file. Then
+close the file. Open this file and read the content of the file.
+
+file1 = open("test.txt" ,'w' )
+file1.write("I want to become a Data Scientist")
+file1.close()
+
+data = open("test.txt" , "r")
+data.read()
+data.close()
+
+Q4. Explain the following with python code: read(), readline() and readlines().
+
+#read()
+read and reaturn all lines as string
+#readline()
+reads a line of the file and return it in the form of the string.
+#readlines()
+reads all the lines at a single go and then return them as each line a string element in a list
+
+Q5. Explain why with statement is used with open(). What is the advantage of using with statement and
+open() together?
+“with statement” creates an execution block and object created in the with statement will be destroyed or gracefully closed when this execution block ends.
+
+It means when we used “with statement” with open() function, an execution blocked started and the file object returned by open() function is assigned to file_object. When this execution block of “with statement” end, then the file object’s close function gets called automatically, and the file will be closed gracefully. We don’t need to manually call the close() function anymore if we are using “with statement”
+
+Benefits of calling open() using “with statement”
+#Fewer chances of bug due to coding error
+No need to explicitly close the opened file, “with statement” takes care of that. When with the block ends, it will automatically close the file. So, it reduces the number of lines of code and reduces the chances of bug.
+
+#Excellent handling in case of exception
+If we have opened a file using “with statement” and an exception comes inside the execution block of “with statement”. Then file will be closed before control moves to the except block.
+
+We don’t need to call the close() function even in case of exceptions, execution block of “with statement” handles that too and closes the file before exception handling.
+
+# We can Open multiple files in a single “with statement”
+
+Q6. Explain the write() and writelines() functions. Give a suitable example.
+
+#write()--is used to write a string to an already opened file
+#writelines()-- method is used to write a list of strings in an opened file
+
+f1 = open("test.txt" ,'w' )
+f1.write("Data Science Masters course")
+f1.close()
+
+
+f = open("demofile3.txt", "a")
+f.writelines(["end of assingment.", "we "])
+f.close()
+
